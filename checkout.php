@@ -1,4 +1,4 @@
-    <header class="masthead">
+  <header class="masthead">
         <div class="container h-100">
             <div class="row h-100 align-items-center justify-content-center text-center">
                 <div class="col-lg-10 align-self-end mb-4 page-title">
@@ -10,11 +10,10 @@
             </div>
         </div>
     </header>
-    <section class="page-section mb-2" id="">
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <form action="" id="checkout">
+                <form action="" id="checkout-frm">
                     <h4>Confirm Delivery Information</h4>
                     <div class="form-group">
                         <label for="" class="control-label">Firstname</label>
@@ -38,33 +37,32 @@
                     </div>  
 
                     <div class="text-center">
-                        <button class="btn btn-block btn-outline-primary">Confirm</button>
+                        <button class="btn btn-block btn-outline-primary">Place Order</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-</section>
-<script>
-    
-    $(document).ready(function(){
-        $('#checkout').submit(function(e){
-            e.preventDefault()
 
-            star_load()
+    <script>
+    $(document).ready(function(){
+          $('#checkout-frm').submit(function(e){
+            e.preventDefault()
+          
+            start_load()
             $.ajax({
-                url:"ajax.php?action=save_order",
+                url:"admin/ajax.php?action=save_order",
                 method:'POST',
-                data:$(this).serialize();
+                data:$(this).serialize(),
                 success:function(resp){
                     if(resp==1){
                         alert_toast("Order successfully Placed.")
-                        setTimout(function(){
+                        setTimeout(function(){
                             location.replace('index.php?page=home')
-                        })
+                        },1500)
                     }
                 }
             })
         })
-    })
-</script>
+        })
+    </script>
